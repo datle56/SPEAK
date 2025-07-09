@@ -1,0 +1,188 @@
+{
+  "chatInterface": {
+    "features": {
+      "textAnimation": {
+        "type": "typewriter",
+        "speed": "50ms per character",
+        "style": "progressive text generation"
+      },
+      "endChatButton": {
+        "position": "top-right",
+        "text": "End Conversation",
+        "style": "red button"
+      }
+    },
+    "postChatReview": {
+      "components": [
+        {
+          "conversationTranscript": {
+            "editable": true,
+            "editableElements": ["userMessages"],
+            "editMode": "clickToEdit",
+            "speechRecognitionCorrection": true
+          }
+        },
+        {
+          "pronunciationAnalysis": {
+            "perSentence": true,
+            "metrics": ["accuracy", "intonation", "rhythm"],
+            "feedback": "detailed"
+          }
+        },
+        {
+          "grammarCheck": {
+            "highlightErrors": true,
+            "suggestions": true,
+            "explanations": true
+          }
+        },
+        {
+          "improvedResponses": {
+            "alternatives": true,
+            "context": true,
+            "examples": true
+          }
+        }
+      ]
+    },
+    "sampleConversation": {
+      "messages": [
+        {
+          "id": 1,
+          "role": "user",
+          "content": "How was your weekend?",
+          "timestamp": "2024-01-20T10:00:00Z",
+          "corrections": {
+            "pronunciation": {
+              "accuracy": 90,
+              "intonation": 85,
+              "rhythm": 88,
+              "feedback": "Great pronunciation! Your intonation could be slightly more natural.",
+              "suggestions": [
+                "Practice rising intonation for questions",
+                "Work on word stress in 'weekend'",
+                "Slow down slightly for better clarity"
+              ]
+            },
+            "grammar": {
+              "isCorrect": true,
+              "errors": [],
+              "suggestions": [
+                "Could add more details to make conversation more engaging",
+                "Consider: 'How was your weekend? Did you do anything special?'"
+              ]
+            },
+            "suggestedImprovement": "Could add more details to make conversation more engaging"
+          }
+        },
+        {
+          "id": 2,
+          "role": "assistant",
+          "content": "My weekend was great! I spent time reading and learning new things. How about yours?",
+          "timestamp": "2024-01-20T10:00:05Z",
+          "animationDuration": "2s",
+          "typewriterEffect": true
+        },
+        {
+          "id": 3,
+          "role": "user",
+          "content": "I went to the park with my family",
+          "timestamp": "2024-01-20T10:00:15Z",
+          "corrections": {
+            "pronunciation": {
+              "accuracy": 75,
+              "intonation": 70,
+              "rhythm": 80,
+              "feedback": "Good effort! Focus on clearer pronunciation of 'family'.",
+              "suggestions": [
+                "Practice the 'a' sound in 'family' - /ˈfæməli/",
+                "Work on linking words smoothly",
+                "Add more emotion to make it sound natural"
+              ]
+            },
+            "grammar": {
+              "isCorrect": true,
+              "errors": [],
+              "suggestions": [
+                "Great sentence structure!",
+                "Could expand: 'I went to the park with my family and we had a picnic'"
+              ]
+            }
+          }
+        },
+        {
+          "id": 4,
+          "role": "assistant",
+          "content": "That sounds wonderful! Parks are great places to spend time with family. What did you do there?",
+          "timestamp": "2024-01-20T10:00:20Z",
+          "animationDuration": "2.5s",
+          "typewriterEffect": true
+        },
+        {
+          "id": 5,
+          "role": "user",
+          "content": "We play soccer and have picnic",
+          "timestamp": "2024-01-20T10:00:30Z",
+          "corrections": {
+            "pronunciation": {
+              "accuracy": 80,
+              "intonation": 75,
+              "rhythm": 85,
+              "feedback": "Good pronunciation overall. Work on past tense endings.",
+              "suggestions": [
+                "Practice 'played' with clear -ed ending",
+                "Work on 'picnic' stress pattern: PIC-nic",
+                "Connect words more smoothly"
+              ]
+            },
+            "grammar": {
+              "isCorrect": false,
+              "errors": [
+                {
+                  "type": "Verb tense",
+                  "message": "Should use past tense 'played' instead of 'play'",
+                  "suggestion": "We played soccer and had a picnic"
+                },
+                {
+                  "type": "Article",
+                  "message": "Missing article 'a' before 'picnic'",
+                  "suggestion": "Add 'a' before 'picnic'"
+                }
+              ],
+              "correctedVersion": "We played soccer and had a picnic",
+              "explanation": "When talking about past events, use past tense verbs. Also, countable nouns usually need articles."
+            }
+          }
+        }
+      ]
+    },
+    "reviewInterface": {
+      "sections": [
+        {
+          "title": "Conversation Transcript",
+          "description": "Click on your messages to edit them if speech recognition made mistakes",
+          "features": ["clickToEdit", "originalVsEdited", "saveChanges"]
+        },
+        {
+          "title": "Pronunciation Analysis",
+          "description": "Detailed feedback on your pronunciation for each message",
+          "metrics": {
+            "accuracy": "How correctly you pronounced words",
+            "intonation": "Natural rise and fall of your voice",
+            "rhythm": "Timing and flow of your speech"
+          }
+        },
+        {
+          "title": "Grammar Check",
+          "description": "Grammar corrections and explanations",
+          "features": ["errorHighlighting", "corrections", "explanations", "examples"]
+        },
+        {
+          "title": "Improvement Suggestions",
+          "description": "Personalized tips to improve your English",
+          "categories": ["pronunciation", "grammar", "vocabulary", "fluency"]
+        }
+      ]
+    }
+  }
+}

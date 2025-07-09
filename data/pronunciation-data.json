@@ -1,0 +1,97 @@
+{
+  "lessons": [
+    {
+      "id": 1,
+      "sentence": "Hello world",
+      "phonetic": "/həˈloʊ wɜːrld/",
+      "audio_url": "audio/hello-world.mp3",
+      "word_analysis": [
+        {
+          "word": "Hel",
+          "phonetic": "/həl/",
+          "accuracy": 85,
+          "status": "correct"
+        },
+        {
+          "word": "lo",
+          "phonetic": "/loʊ/",
+          "accuracy": 60,
+          "status": "incorrect"
+        },
+        {
+          "word": "world",
+          "phonetic": "/wɜːrld/",
+          "accuracy": 78,
+          "status": "close"
+        }
+      ],
+      "overall_score": 74
+    },
+    {
+      "id": 2,
+      "sentence": "The quick brown fox",
+      "phonetic": "/ðə kwɪk braʊn fɑːks/",
+      "audio_url": "audio/quick-brown-fox.mp3",
+      "word_analysis": [
+        {
+          "word": "The",
+          "phonetic": "/ðə/",
+          "accuracy": 92,
+          "status": "correct"
+        },
+        {
+          "word": "quick",
+          "phonetic": "/kwɪk/",
+          "accuracy": 88,
+          "status": "correct"
+        },
+        {
+          "word": "brown",
+          "phonetic": "/braʊn/",
+          "accuracy": 65,
+          "status": "close"
+        },
+        {
+          "word": "fox",
+          "phonetic": "/fɑːks/",
+          "accuracy": 45,
+          "status": "incorrect"
+        }
+      ],
+      "overall_score": 72
+    },
+    {
+      "id": 3,
+      "sentence": "I love learning English",
+      "phonetic": "/aɪ lʌv ˈlɜːrnɪŋ ˈɪŋɡlɪʃ/",
+      "audio_url": "audio/love-learning.mp3",
+      "word_analysis": [
+        {
+          "word": "I",
+          "phonetic": "/aɪ/",
+          "accuracy": 95,
+          "status": "correct"
+        },
+        {
+          "word": "love",
+          "phonetic": "/lʌv/",
+          "accuracy": 82,
+          "status": "correct"
+        },
+        {
+          "word": "learning",
+          "phonetic": "/ˈlɜːrnɪŋ/",
+          "accuracy": 70,
+          "status": "close"
+        },
+        {
+          "word": "English",
+          "phonetic": "/ˈɪŋɡlɪʃ/",
+          "accuracy": 87,
+          "status": "correct"
+        }
+      ],
+      "overall_score": 83
+    }
+  ]
+}
