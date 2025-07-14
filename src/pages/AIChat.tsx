@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { useAuth } from '../context/AuthContext';
-import { Send, Mic, Volume2, MoreVertical, ArrowLeft, X, Edit3, Check, Play, RotateCcw } from 'lucide-react';
-import { useNavigate } from 'react-router-dom';
+import { Send, Mic, Volume2, MoreVertical, ArrowLeft, X, Edit3, Check, Play, RotateCcw, BookOpen, Users } from 'lucide-react';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { getAIResponse } from '../data/chatResponses';
 
 interface ChatMessage {
@@ -36,6 +36,10 @@ interface GrammarCheck {
 const AIChat: React.FC = () => {
   const { user } = useAuth();
   const navigate = useNavigate();
+  const location = useLocation();
+  const searchParams = new URLSearchParams(location.search);
+  const chatMode = searchParams.get('mode'); // 'lesson' or 'roleplay'
+  
   const [messages, setMessages] = useState<ChatMessage[]>([
     {
       id: '1',
@@ -56,6 +60,8 @@ const AIChat: React.FC = () => {
   const [editContent, setEditContent] = useState('');
   const [showTranscriptEdit, setShowTranscriptEdit] = useState(false);
   const [transcriptMessages, setTranscriptMessages] = useState<ChatMessage[]>([]);
+  const [currentLesson, setCurrentLesson] = useState<any>(null);
+  const [rolePlayScenario, setRolePlayScenario] = useState<any>(null);
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
   const typingIntervalRef = useRef<NodeJS.Timeout | null>(null);
@@ -70,18 +76,51 @@ const AIChat: React.FC = () => {
 
   useEffect(() => {
     // Load chat history from localStorage
-    const savedMessages = localStorage.getItem('aiChatHistory');
-    if (savedMessages) {
-      const parsedMessages = JSON.parse(savedMessages).map((msg: any) => ({
-        ...msg,
-        timestamp: new Date(msg.timestamp)
-      }));
-      setMessages(prev => [...prev, ...parsedMessages]);
+    if (chatMode === 'lesson') {
+      const lessonData = localStorage.getItem('aiChatLesson');
+      if (lessonData) {
+        const lesson = JSON.parse(lessonData);
+        setCurrentLesson(lesson);
+        setMessages([{
+          id: '1',
+          timestamp: new Date(),
+          sender: 'ai',
+          content: `Welcome to the "${lesson.title}" lesson! 🎯\n\nIn this lesson, we'll practice ${lesson.description.toLowerCase()}. Here are some key phrases we'll work on:\n\n${lesson.samplePhrases.slice(0, 3).map((phrase: string) => `• "${phrase}"`).join('\n')}\n\nLet's start! Try using one of these phrases in a sentence, or ask me any questions about this topic.`,
+          status: 'delivered',
+          type: 'text'
+        }]);
+      }
+    } else if (chatMode === 'roleplay') {
+      const scenarioData = localStorage.getItem('rolePlayScenario');
+      if (scenarioData) {
+        const scenario = JSON.parse(scenarioData);
+        setRolePlayScenario(scenario);
+        setMessages([{
+          id: '1',
+          timestamp: new Date(),
+          sender: 'ai',
+          content: `Hello! I'm your ${scenario.title}. ${scenario.aiPersonality}\n\n🎭 **Role Play Scenario:**\n**Your role:** ${scenario.userRole}\n**Situation:** ${scenario.context}\n\nI'm ready to help you practice! How can I assist you today?`,
+          status: 'delivered',
+          type: 'text'
+        }]);
+      }
+    } else {
+      // Regular chat mode - load saved messages
+      const savedMessages = localStorage.getItem('aiChatHistory');
+      if (savedMessages) {
+        const parsedMessages = JSON.parse(savedMessages).map((msg: any) => ({
+          ...msg,
+          timestamp: new Date(msg.timestamp)
+        }));
+        setMessages(prev => [...prev, ...parsedMessages]);
+      }
     }
-  }, []);
+  }, [chatMode]);
 
   const saveToLocalStorage = (newMessages: ChatMessage[]) => {
-    localStorage.setItem('aiChatHistory', JSON.stringify(newMessages.slice(1))); // Don't save welcome message
+    if (chatMode !== 'lesson' && chatMode !== 'roleplay') {
+      localStorage.setItem('aiChatHistory', JSON.stringify(newMessages.slice(1))); // Don't save welcome message
+    }
   };
 
   const typewriterEffect = (text: string, messageId: string) => {
@@ -111,6 +150,17 @@ const AIChat: React.FC = () => {
   };
 
   const generateAIResponse = (userMessage: string): string => {
+    if (chatMode === 'lesson' && currentLesson) {
+      // Lesson-specific responses
+      const message = userMessage.toLowerCase();
+      if (currentLesson.samplePhrases.some((phrase: string) => message.includes(phrase.toLowerCase().slice(0, 10)))) {
+        return `Great job using that phrase! Your pronunciation sounded good. Let's practice it a bit more. Try saying: "${currentLesson.samplePhrases[Math.floor(Math.random() * currentLesson.samplePhrases.length)]}" - focus on clear pronunciation and natural intonation.`;
+      }
+      return `That's a good attempt! In the context of ${currentLesson.title.toLowerCase()}, you might also say: "${currentLesson.samplePhrases[Math.floor(Math.random() * currentLesson.samplePhrases.length)]}" - would you like to practice this phrase?`;
+    } else if (chatMode === 'roleplay' && rolePlayScenario) {
+      // Role-play specific responses based on scenario
+      return `*As your ${rolePlayScenario.title}* - ${getAIResponse(userMessage)} Remember, I'm here to help you practice this conversation naturally!`;
+    }
     return getAIResponse(userMessage);
   };
 
@@ -617,6 +667,23 @@ const AIChat: React.FC = () => {
 
   if (!user) return null;
 
+  const getHeaderTitle = () => {
+    if (chatMode === 'lesson' && currentLesson) {
+      return `📚 ${currentLesson.title}`;
+    } else if (chatMode === 'roleplay' && rolePlayScenario) {
+      return `🎭 ${rolePlayScenario.title}`;
+    }
+    return 'AI Pronunciation Tutor';
+  };
+
+  const getHeaderSubtitle = () => {
+    if (chatMode === 'lesson') {
+      return 'Lesson Practice Mode';
+    } else if (chatMode === 'roleplay') {
+      return 'Role Play Mode';
+    }
+    return 'Online • Ready to help';
+  };
   return (
     <>
       <div className="flex flex-col h-screen bg-gradient-to-br from-blue-50 to-green-50">
@@ -634,11 +701,29 @@ const AIChat: React.FC = () => {
                 <Volume2 size={20} className="text-white" />
               </div>
               <div>
-                <h1 className="font-semibold text-gray-800">AI Pronunciation Tutor</h1>
-                <p className="text-sm text-green-500">Online • Ready to help</p>
+                <h1 className="font-semibold text-gray-800">{getHeaderTitle()}</h1>
+                <p className="text-sm text-green-500">{getHeaderSubtitle()}</p>
               </div>
             </div>
             <div className="flex items-center space-x-2">
+              {chatMode === 'lesson' && (
+                <button
+                  onClick={() => navigate('/ai-lessons')}
+                  className="flex items-center space-x-1 px-3 py-1 bg-blue-100 text-blue-600 rounded-xl hover:bg-blue-200 transition-colors text-sm font-medium"
+                >
+                  <BookOpen size={16} />
+                  <span>All Lessons</span>
+                </button>
+              )}
+              {chatMode === 'roleplay' && (
+                <button
+                  onClick={() => navigate('/roleplay-setup')}
+                  className="flex items-center space-x-1 px-3 py-1 bg-purple-100 text-purple-600 rounded-xl hover:bg-purple-200 transition-colors text-sm font-medium"
+                >
+                  <Users size={16} />
+                  <span>New Scenario</span>
+                </button>
+              )}
               <button
                 onClick={handleEndConversation}
                 className="px-4 py-2 bg-red-500 text-white rounded-xl hover:bg-red-600 transition-colors text-sm font-medium"
@@ -701,10 +786,10 @@ const AIChat: React.FC = () => {
             {/* Quick Actions */}
             <div className="flex flex-wrap gap-2 mt-3">
               <button
-                onClick={() => setInputMessage("Help me with pronunciation")}
+                onClick={() => setInputMessage(chatMode === 'lesson' ? `Let's practice ${currentLesson?.title || 'this lesson'}` : "Help me with pronunciation")}
                 className="px-3 py-1 bg-blue-50 text-blue-600 rounded-full text-sm hover:bg-blue-100 transition-colors"
               >
-                Need help with pronunciation
+                {chatMode === 'lesson' ? 'Practice this lesson' : 'Need help with pronunciation'}
               </button>
               <button
                 onClick={() => setInputMessage("Let's practice a conversation")}
@@ -714,10 +799,18 @@ const AIChat: React.FC = () => {
               </button>
               <button
                 onClick={() => setInputMessage("Correct my pronunciation")}
-                className="px-3 py-1 bg-purple-50 text-purple-600 rounded-full text-sm hover:bg-purple-100 transition-colors"
+                className="px-3 py-1 bg-green-50 text-green-600 rounded-full text-sm hover:bg-green-100 transition-colors"
               >
                 Correct my pronunciation
               </button>
+              {chatMode === 'lesson' && currentLesson && (
+                <button
+                  onClick={() => setInputMessage(`Can you help me practice: "${currentLesson.samplePhrases[0]}"`)}
+                  className="px-3 py-1 bg-purple-50 text-purple-600 rounded-full text-sm hover:bg-purple-100 transition-colors"
+                >
+                  Practice key phrases
+                </button>
+              )}
             </div>
           </div>
         </div>

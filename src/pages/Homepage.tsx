@@ -1,7 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
-import { Play, BookOpen, BarChart3, Trophy, Flame, Star } from 'lucide-react';
+import { Play, BookOpen, BarChart3, Trophy, Flame, Star, Mic, MessageCircle, Users } from 'lucide-react';
 import { achievements } from '../data/achievements';
 
 const Homepage: React.FC = () => {
@@ -128,8 +128,32 @@ const Homepage: React.FC = () => {
           </div>
         </div>
 
-        {/* Main Actions */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+        {/* Quick Practice Section */}
+        <div className="bg-white rounded-3xl shadow-xl p-6 mb-6">
+          <h2 className="text-2xl font-bold text-gray-800 mb-4 flex items-center">
+            <Mic className="mr-3 text-purple-500" />
+            Quick Practice
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <button
+              onClick={() => navigate('/custom-practice')}
+              className="bg-gradient-to-r from-purple-500 to-pink-500 text-white p-6 rounded-2xl shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300"
+            >
+              <Mic size={32} className="mx-auto mb-3" />
+              <div className="text-lg font-bold mb-2">Custom Pronunciation</div>
+              <div className="text-sm opacity-90">Practice with your own sentences</div>
+            </button>
+            
+            <button
+              onClick={() => navigate('/roleplay-setup')}
+              className="bg-gradient-to-r from-indigo-500 to-purple-500 text-white p-6 rounded-2xl shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300"
+            >
+              <Users size={32} className="mx-auto mb-3" />
+              <div className="text-lg font-bold mb-2">Role Play Chat</div>
+              <div className="text-sm opacity-90">Practice conversations with AI</div>
+            </button>
+          </div>
+        </div>
           <button
             onClick={() => navigate('/lesson/3')}
             className="bg-gradient-to-r from-blue-500 to-green-500 text-white p-6 rounded-3xl shadow-xl hover:shadow-2xl transform hover:scale-105 transition-all duration-300"
@@ -149,12 +173,21 @@ const Homepage: React.FC = () => {
           </button>
           
           <button
-            onClick={() => navigate('/profile')}
+            onClick={() => navigate('/chat')}
             className="bg-white border-2 border-green-200 text-gray-800 p-6 rounded-3xl shadow-xl hover:shadow-2xl transform hover:scale-105 transition-all duration-300"
           >
-            <BarChart3 size={32} className="mx-auto mb-3 text-green-500" />
-            <div className="text-xl font-bold mb-2">Check Progress</div>
-            <div className="text-sm text-gray-600">View detailed statistics</div>
+            <MessageCircle size={32} className="mx-auto mb-3 text-green-500" />
+            <div className="text-xl font-bold mb-2">AI Chat</div>
+            <div className="text-sm text-gray-600">Practice with AI tutor</div>
+          </button>
+          
+          <button
+            onClick={() => navigate('/profile')}
+            className="bg-white border-2 border-purple-200 text-gray-800 p-6 rounded-3xl shadow-xl hover:shadow-2xl transform hover:scale-105 transition-all duration-300"
+          >
+            <BarChart3 size={32} className="mx-auto mb-3 text-purple-500" />
+            <div className="text-xl font-bold mb-2">Your Progress</div>
+            <div className="text-sm text-gray-600">View achievements & stats</div>
           </button>
         </div>
       </main>
@@ -162,4 +195,6 @@ const Homepage: React.FC = () => {
   );
 };
 
+        {/* Main Actions */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
 export default Homepage;
