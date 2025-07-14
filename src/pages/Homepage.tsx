@@ -189,12 +189,12 @@ const Homepage: React.FC = () => {
             <div className="text-xl font-bold mb-2">Your Progress</div>
             <div className="text-sm text-gray-600">View achievements & stats</div>
           </button>
-        </div>
       </main>
     </div>
   );
 };
 
         {/* Main Actions */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
 export default Homepage;
