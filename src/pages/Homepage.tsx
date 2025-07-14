@@ -196,5 +196,36 @@ const Homepage: React.FC = () => {
 
         {/* Main Actions */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <button
+            onClick={() => navigate('/lesson/3')}
+            className="bg-gradient-to-r from-blue-500 to-green-500 text-white p-6 rounded-3xl shadow-xl hover:shadow-2xl transform hover:scale-105 transition-all duration-300"
+          >
+            <Play size={32} className="mx-auto mb-3" />
+            <div className="text-xl font-bold mb-2">Continue Learning</div>
+            <div className="text-sm opacity-90">Resume your current lesson</div>
+          </button>
+          
+          <button
+            onClick={() => navigate('/lessons')}
+            className="bg-white border-2 border-blue-200 text-gray-800 p-6 rounded-3xl shadow-xl hover:shadow-2xl transform hover:scale-105 transition-all duration-300"
+          >
+            <BookOpen size={32} className="mx-auto mb-3 text-blue-500" />
+            <div className="text-xl font-bold mb-2">View All Lessons</div>
+            <div className="text-sm text-gray-600">Explore the lesson map</div>
+          </button>
+          
+          <button
+            onClick={() => navigate('/chat')}
+            className="bg-white border-2 border-green-200 text-gray-800 p-6 rounded-3xl shadow-xl hover:shadow-2xl transform hover:scale-105 transition-all duration-300"
+          >
+            <MessageCircle size={32} className="mx-auto mb-3 text-green-500" />
+            <div className="text-xl font-bold mb-2">AI Chat</div>
+            <div className="text-sm text-gray-600">Practice with AI tutor</div>
+          </button>
+        </div>
+      </main>
+    </div>
+  );
+};
+
 export default Homepage;
