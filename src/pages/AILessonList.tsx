@@ -23,7 +23,7 @@ const AILessonList: React.FC = () => {
 
   useEffect(() => {
     // Load AI chat lessons data
-    fetch('/src/data/aiChatLessons.json')
+    fetch('/data/aiChatLessons.json')
       .then(response => response.json())
       .then(data => {
         setLessons(data.aiChatLessons);
@@ -81,7 +81,7 @@ const AILessonList: React.FC = () => {
         <div className="flex items-center justify-between max-w-4xl mx-auto">
           <div className="flex items-center space-x-3">
             <button
-              onClick={() => navigate('/chat')}
+              onClick={() => navigate('/')}
               className="p-2 hover:bg-white/10 rounded-full transition-colors"
             >
               <ArrowLeft size={20} />

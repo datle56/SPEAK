@@ -1,0 +1,206 @@
+{
+  "aiChatLessons": [
+    {
+      "id": 1,
+      "title": "Restaurant Conversation",
+      "icon": "🍽️",
+      "category": "Daily Life",
+      "description": "Practice ordering food and talking to waiters",
+      "difficulty": "Beginner",
+      "estimatedTime": "10-15 minutes",
+      "topics": ["Food", "Ordering", "Polite requests"],
+      "samplePhrases": [
+        "I'd like to order...",
+        "Could I have the menu, please?",
+        "What do you recommend?",
+        "The bill, please."
+      ]
+    },
+    {
+      "id": 2,
+      "title": "Job Interview",
+      "icon": "💼",
+      "category": "Professional",
+      "description": "Practice common job interview questions and answers",
+      "difficulty": "Intermediate",
+      "estimatedTime": "15-20 minutes",
+      "topics": ["Career", "Skills", "Experience"],
+      "samplePhrases": [
+        "Tell me about yourself",
+        "What are your strengths?",
+        "Why do you want this job?",
+        "Do you have any questions?"
+      ]
+    },
+    {
+      "id": 3,
+      "title": "Shopping Experience",
+      "icon": "🛍️",
+      "category": "Daily Life",
+      "description": "Learn to ask about prices, sizes, and make purchases",
+      "difficulty": "Beginner",
+      "estimatedTime": "10-15 minutes",
+      "topics": ["Shopping", "Prices", "Sizes", "Payment"],
+      "samplePhrases": [
+        "How much does this cost?",
+        "Do you have this in a different size?",
+        "Can I try this on?",
+        "I'll take it."
+      ]
+    },
+    {
+      "id": 4,
+      "title": "Travel & Tourism",
+      "icon": "✈️",
+      "category": "Travel",
+      "description": "Practice asking for directions and travel information",
+      "difficulty": "Intermediate",
+      "estimatedTime": "15-20 minutes",
+      "topics": ["Directions", "Transportation", "Hotels", "Sightseeing"],
+      "samplePhrases": [
+        "How do I get to...?",
+        "Where is the nearest...?",
+        "I'd like to book a room",
+        "What time does it close?"
+      ]
+    },
+    {
+      "id": 5,
+      "title": "Doctor's Appointment",
+      "icon": "🏥",
+      "category": "Healthcare",
+      "description": "Learn to describe symptoms and talk to healthcare providers",
+      "difficulty": "Intermediate",
+      "estimatedTime": "15-20 minutes",
+      "topics": ["Health", "Symptoms", "Medical terms"],
+      "samplePhrases": [
+        "I don't feel well",
+        "I have a headache",
+        "How often should I take this?",
+        "When should I come back?"
+      ]
+    },
+    {
+      "id": 6,
+      "title": "Making Friends",
+      "icon": "👥",
+      "category": "Social",
+      "description": "Practice casual conversations and making new friends",
+      "difficulty": "Beginner",
+      "estimatedTime": "10-15 minutes",
+      "topics": ["Introductions", "Hobbies", "Small talk"],
+      "samplePhrases": [
+        "Nice to meet you",
+        "What do you do for fun?",
+        "Would you like to hang out?",
+        "Let's keep in touch"
+      ]
+    },
+    {
+      "id": 7,
+      "title": "Business Meeting",
+      "icon": "📊",
+      "category": "Professional",
+      "description": "Practice formal business communication and presentations",
+      "difficulty": "Advanced",
+      "estimatedTime": "20-25 minutes",
+      "topics": ["Presentations", "Negotiations", "Reports"],
+      "samplePhrases": [
+        "Let me present the data",
+        "What's your opinion on this?",
+        "I'd like to propose...",
+        "Let's schedule a follow-up"
+      ]
+    },
+    {
+      "id": 8,
+      "title": "Phone Conversations",
+      "icon": "📞",
+      "category": "Communication",
+      "description": "Master phone etiquette and clear communication",
+      "difficulty": "Intermediate",
+      "estimatedTime": "15-20 minutes",
+      "topics": ["Phone etiquette", "Appointments", "Information"],
+      "samplePhrases": [
+        "Hello, this is...",
+        "Could you speak more slowly?",
+        "I'll call you back",
+        "Thank you for calling"
+      ]
+    },
+    {
+      "id": 9,
+      "title": "At the Bank",
+      "icon": "🏦",
+      "category": "Daily Life",
+      "description": "Practice banking conversations and financial transactions",
+      "difficulty": "Intermediate",
+      "estimatedTime": "15-20 minutes",
+      "topics": ["Banking", "Money", "Transactions"],
+      "samplePhrases": [
+        "I'd like to open an account",
+        "Can I check my balance?",
+        "I need to transfer money",
+        "What's the exchange rate?"
+      ]
+    },
+    {
+      "id": 10,
+      "title": "Weather Talk",
+      "icon": "🌤️",
+      "category": "Small Talk",
+      "description": "Practice talking about weather and making small talk",
+      "difficulty": "Beginner",
+      "estimatedTime": "10-15 minutes",
+      "topics": ["Weather", "Seasons", "Small talk"],
+      "samplePhrases": [
+        "How's the weather today?",
+        "It's quite sunny outside",
+        "I hope it doesn't rain",
+        "Perfect weather for a walk"
+      ]
+    }
+  ],
+  "rolePlayScenarios": [
+    {
+      "id": "customer-service",
+      "title": "Customer Service Representative",
+      "description": "AI will act as a helpful customer service agent",
+      "aiPersonality": "Professional, patient, and solution-oriented",
+      "userRole": "Customer with a problem or question",
+      "context": "You're calling customer service about an issue with your order/service"
+    },
+    {
+      "id": "language-tutor",
+      "title": "English Language Tutor",
+      "description": "AI will act as an encouraging English teacher",
+      "aiPersonality": "Patient, encouraging, and educational",
+      "userRole": "English language learner",
+      "context": "You're having a lesson with your English tutor"
+    },
+    {
+      "id": "job-interviewer",
+      "title": "Job Interviewer",
+      "description": "AI will conduct a professional job interview",
+      "aiPersonality": "Professional, inquisitive, and evaluative",
+      "userRole": "Job candidate",
+      "context": "You're interviewing for your dream job"
+    },
+    {
+      "id": "travel-guide",
+      "title": "Local Travel Guide",
+      "description": "AI will act as a knowledgeable local guide",
+      "aiPersonality": "Friendly, knowledgeable, and enthusiastic",
+      "userRole": "Tourist",
+      "context": "You're exploring a new city and need recommendations"
+    },
+    {
+      "id": "doctor",
+      "title": "Medical Doctor",
+      "description": "AI will act as a caring healthcare provider",
+      "aiPersonality": "Professional, caring, and thorough",
+      "userRole": "Patient",
+      "context": "You're visiting the doctor for a check-up"
+    }
+  ]
+}

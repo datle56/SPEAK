@@ -176,12 +176,12 @@ const Homepage: React.FC = () => {
           </button>
           
           <button
-            onClick={() => navigate('/chat')}
+            onClick={() => navigate('/ai-lessons')}
             className="bg-white border-2 border-green-200 text-gray-800 p-6 rounded-3xl shadow-xl hover:shadow-2xl transform hover:scale-105 transition-all duration-300"
           >
             <MessageCircle size={32} className="mx-auto mb-3 text-green-500" />
             <div className="text-xl font-bold mb-2">AI Chat</div>
-            <div className="text-sm text-gray-600">Practice with AI tutor</div>
+            <div className="text-sm text-gray-600">Choose lesson topics to practice</div>
           </button>
         </div>
       </main>
