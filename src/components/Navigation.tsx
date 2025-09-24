@@ -43,6 +43,9 @@ const Navigation: React.FC<NavigationProps> = ({
             <div className="text-lg font-bold text-gray-800">
               {currentLesson} / {totalLessons}
             </div>
+            <div className="text-xs text-green-600 mt-1">
+              Complete lesson to unlock practice!
+            </div>
           </div>
           
           <button

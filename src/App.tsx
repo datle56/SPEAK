@@ -13,6 +13,7 @@ import AIChat from './pages/AIChat';
 import CustomPractice from './pages/CustomPractice';
 import RolePlaySetup from './pages/RolePlaySetup';
 import AILessonList from './pages/AILessonList';
+import PracticeConversation from './pages/PracticeConversation';
 
 const AppContent: React.FC = () => {
   const { isAuthenticated } = useAuth();
@@ -60,6 +61,11 @@ const AppContent: React.FC = () => {
         <Route path="/ai-lessons" element={
           <ProtectedRoute>
             <AILessonList />
+          </ProtectedRoute>
+        } />
+        <Route path="/practice-conversation" element={
+          <ProtectedRoute>
+            <PracticeConversation />
           </ProtectedRoute>
         } />
       </Routes>
