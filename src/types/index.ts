@@ -53,3 +53,18 @@ export interface AuthState {
   user: User | null;
   loading: boolean;
 }
+
+export interface PracticeSession {
+  lessonId: number;
+  lessonTitle: string;
+  topic: string;
+  scenarios: PracticeScenario[];
+}
+
+export interface PracticeScenario {
+  title: string;
+  roleA: string;
+  roleB: string;
+  context: string;
+  suggestedPhrases: string[];
+}

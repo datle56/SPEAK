@@ -241,6 +241,7 @@ const LessonMap: React.FC = () => {
             <div className="text-center p-4 bg-gradient-to-r from-green-50 to-green-100 rounded-xl">
               <div className="text-3xl font-bold text-green-600">{completedLessons}</div>
               <div className="text-sm text-green-700">Lessons Completed</div>
+              <div className="text-xs text-gray-500 mt-1">Practice sessions unlocked</div>
             </div>
             <div className="text-center p-4 bg-gradient-to-r from-blue-50 to-blue-100 rounded-xl">
               <div className="text-3xl font-bold text-blue-600">{user.accuracy}%</div>
